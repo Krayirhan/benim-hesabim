@@ -1,15 +1,15 @@
 [versions]
-agp = "8.6.1"
-kotlin = "2.1.10"
+agp = "9.0.1"
+kotlin = "2.3.21"
 compose-bom = "2025.02.00"
 activityCompose = "1.10.0"
 lifecycle = "2.8.7"
 navigation = "2.8.7"
-hilt = "2.52"
-room = "2.6.1"
+hilt = "2.60"
+room = "2.8.4"
 coroutines = "1.9.0"
 serialization = "1.7.3"
-ksp = "2.1.10-1.0.31"
+ksp = "2.3.9"
 supabase = "3.6.0"
 ktor = "3.1.1"
 datastore = "1.1.2"
@@ -31,6 +31,7 @@ compose-foundation = { module = "androidx.compose.foundation:foundation" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-icons = { module = "androidx.compose.material:material-icons-extended" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version = "1.2.0" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
@@ -43,10 +44,9 @@ supabase-postgrest = { module = "io.github.jan-tennert.supabase:postgrest-kt" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 
 [plugins]
-android.application = { id = "com.android.application", version.ref = "agp" }
-kotlin.android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin.compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-kotlin.serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlin.kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-hilt.android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

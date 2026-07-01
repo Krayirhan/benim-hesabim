@@ -15,15 +15,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.benimhesabim.app.core.common.AmountFormatter
 import com.benimhesabim.app.core.common.DateFormatter
 import com.benimhesabim.app.domain.model.TransactionType
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TransactionListScreen(
     onBack: () -> Unit,
@@ -37,7 +41,7 @@ fun TransactionListScreen(
                 title = { Text("Tüm İşlemler") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(androidx.compose.material.icons.Icons.Default.ArrowBack, contentDescription = "Geri")
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Geri")
                     }
                 }
             )

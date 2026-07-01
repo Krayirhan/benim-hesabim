@@ -1,15 +1,20 @@
-# Benim Hesabım
+# Benim Hesabim
 
-Basit ama düzenli mimarili bir Android MVP.
+Benim Hesabim, gelir ve gider takibi icin gelistirilmis basit ama duzenli mimarili bir Android uygulamasidir. Uygulama once lokal veritabani ile calisir, sonra da Supabase ile senkronizasyona uygun bir yapida ilerler.
 
-Amaç:
-- Gelir/gider ekleme
-- İşlemleri listeleme
-- Bu ayki gelir, gider ve kalan bakiyeyi görme
-- Supabase Auth ile email/şifre giriş ve kayıt
-- Room ile offline-first çalışma
+## Proje Ozeti
 
-## Kullanılan Teknolojiler
+Bu proje, kullanicinin para hareketlerini hizli sekilde kaydedebilecegi ve aylik durumunu gorebilecegi bir MVP olarak tasarlandi.
+
+Temel hedefler:
+- gelir ve gider eklemek
+- islem gecmisini listelemek
+- aylik ozet gormek
+- email/sifre ile giris ve kayit yapmak
+- offline-first calismak
+
+## Kullanilan Teknolojiler
+
 - Kotlin
 - Jetpack Compose
 - Material 3
@@ -22,152 +27,137 @@ Amaç:
 - Supabase PostgreSQL
 - Gradle Version Catalog
 
-## Supabase Kurulumu
-1. Supabase Dashboard'da proje oluşturun.
-2. `supabase/schema.sql` dosyasındaki SQL'i Supabase SQL Editor içinde çalıştırın.
-3. Project Settings > API bölümünden sadece `anon` key alın.
-4. `service_role` key'i mobil uygulamaya koymayın.
+## Guncel Sayfalar
 
-## `local.properties` İçeriği
-`local.properties` dosyasına şunları ekleyin:
+Projede su anda aktif olan sayfalar:
+
+- `SplashScreen`: oturum kontrolu yapar ve ilk yonlendirmeyi belirler
+- `LoginScreen`: kullanicinin email ve sifre ile giris yapmasini saglar
+- `RegisterScreen`: yeni kullanici kaydi olusturur
+- `HomeScreen`: toplam gelir, gider ve kalan bakiyeyi gosterir
+- `AddTransactionScreen`: yeni gelir veya gider ekler
+- `TransactionListScreen`: tum islemleri listeler
+- `SettingsScreen`: hesap bilgisi ve cikis islemleri icin kullanilir
+
+## Gelecekte Eklenecek Sayfalar
+
+Henuz projede olmayan ama mantikli gelisim sirasi icinde planlanabilecek sayfalar:
+
+- `TransactionDetailScreen`
+- `EditTransactionScreen`
+- `ProfileScreen`
+- `SyncStatusScreen`
+- `AboutScreen`
+
+Bu sayfalarin gorevleri:
+
+- `TransactionDetailScreen`: tek bir islemin detayini gostermek
+- `EditTransactionScreen`: mevcut bir islemi guncellemek
+- `ProfileScreen`: kullanici bilgilerini tek yerde toplamak
+- `SyncStatusScreen`: lokal veri ile Supabase arasindaki senkron durumunu gostermek
+- `AboutScreen`: uygulama ve proje hakkinda bilgi vermek
+
+## Supabase Kurulumu
+
+1. Supabase Dashboard uzerinden yeni bir proje olustur.
+2. `supabase/schema.sql` dosyasindaki SQL komutlarini Supabase SQL Editor icinde calistir.
+3. Project Settings > API bolumunden `anon` key al.
+4. `service_role` key'i mobil uygulamaya koyma.
+
+## local.properties
+
+`local.properties` dosyasina su degerleri ekle:
 
 ```properties
 SUPABASE_URL=BURAYA_SUPABASE_PROJECT_URL_GIR
 SUPABASE_ANON_KEY=BURAYA_SUPABASE_ANON_KEY_GIR
 ```
 
-Gerçek değerleri Supabase Dashboard > Project Settings > API bölümünden alın.
-`service_role` key kullanmayın.
+Gercek degerleri Supabase Dashboard > Project Settings > API bolumunden al.
 
-## `local.properties.example` ve `.env.example`
-Bu dosyalar repoya eklendi:
+## Ornek Dosyalar
+
+Repoda ornek olarak sunlar bulunur:
+
 - `.env.example`
 - `local.properties.example`
 
-Gerçek `local.properties` ve `.env` dosyaları `.gitignore` içindedir.
+Gercek `local.properties` ve `.env` dosyalari `.gitignore` ile disarida tutulur.
 
-## Supabase SQL Dosyasını Çalıştırma
-1. Supabase Dashboard açın.
-2. SQL Editor bölümüne gidin.
-3. `supabase/schema.sql` içeriğini yapıştırın.
-4. Çalıştırın.
+## Supabase SQL Dosyasini Calistirma
 
-## Çalıştırma Adımları
-1. Android Studio ile projeyi açın.
-2. `local.properties` dosyasını oluşturun ve Supabase değerlerini girin.
-3. Gradle sync yapın.
-4. Uygulamayı çalıştırın.
+1. Supabase Dashboard ac.
+2. SQL Editor bolumune git.
+3. `supabase/schema.sql` icerigini yapistir.
+4. Calistir.
 
-## Proje Klasör Yapısı
+## Calistirma Adimlari
+
+1. Android Studio ile projeyi ac.
+2. `local.properties` dosyasini olustur ve Supabase degerlerini gir.
+3. Gradle sync yap.
+4. Uygulamayi calistir.
+
+## Proje Klasor Yapisi
+
 ```text
 com.benimhesabim.app
-├── core
-│   ├── common
-│   ├── designsystem
-│   ├── util
-│   └── navigation
-├── data
-│   ├── local
-│   │   ├── database
-│   │   ├── dao
-│   │   └── entity
-│   ├── remote
-│   │   ├── supabase
-│   │   └── dto
-│   ├── repository
-│   └── mapper
-├── domain
-│   ├── model
-│   ├── repository
-│   └── usecase
-├── feature
-│   ├── auth
-│   ├── home
-│   ├── transaction
-│   └── settings
-└── app
-    ├── MainActivity
-    └── BenimHesabimApplication
+|-- core
+|   |-- common
+|   |-- designsystem
+|   |-- util
+|   `-- navigation
+|-- data
+|   |-- local
+|   |   |-- database
+|   |   |-- dao
+|   |   `-- entity
+|   |-- remote
+|   |   |-- supabase
+|   |   `-- dto
+|   |-- repository
+|   `-- mapper
+|-- domain
+|   |-- model
+|   |-- repository
+|   `-- usecase
+|-- feature
+|   |-- auth
+|   |-- home
+|   |-- transaction
+|   `-- settings
+`-- app
+    |-- MainActivity
+    `-- BenimHesabimApplication
 ```
 
-## MVP Özellikleri
+## MVP Ozellikleri
+
 - Splash ekran
-- Email/şifre giriş
-- Email/şifre kayıt
-- Ana ekranda aylık özet
+- Email/sifre giris
+- Email/sifre kayit
+- Ana ekranda aylik ozet
 - Gelir/gider ekleme
-- İşlem listesi
+- Islem listesi
 - Ayarlar ekranı
-- Room tabanlı offline-first kayıt
+- Room tabanli offline-first kayit
 - Basit Supabase senkronizasyonu
 
-## GitHub'a Yükleme Adımları
-Bu projede `gh` kuruluysa ve oturum açıksa repo oluşturulabilir.
+## GitHub'a Yukleme
 
-1. Git repository başlat:
-
-```bash
-git init
-```
-
-2. Branch adını `main` yap:
-
-```bash
-git branch -M main
-```
-
-3. Durumu kontrol et:
+Proje zaten `main` branch uzerinde tutuluyor. Degisiklikleri GitHub'a gondermek icin:
 
 ```bash
 git status
+git add README.md app build.gradle.kts gradle/libs.versions.toml
+git commit -m "Update project overview and app changes"
+git push origin main
 ```
 
-4. Şunların commit'e girmediğini doğrula:
-- `local.properties`
-- `.env`
-- `build` klasörleri
-- gerçek Supabase key'leri
-- keystore dosyaları
+Onemli notlar:
 
-5. Dosyaları ekle:
+- `local.properties` commit'e girmemeli
+- `.env` commit'e girmemeli
+- gercek Supabase key'leri repoya eklenmemeli
+- build ciktilari commit'e girmemeli
 
-```bash
-git add .
-```
-
-6. İlk commit:
-
-```bash
-git commit -m "Initial commit: Benim Hesabım Android MVP"
-```
-
-7. Remote ekle:
-
-```bash
-git remote add origin https://github.com/BURAYA_GITHUB_KULLANICI_ADI_GIR/benim-hesabim.git
-```
-
-8. Push et:
-
-```bash
-git push -u origin main
-```
-
-Eğer remote daha önce eklenmişse:
-
-```bash
-git remote set-url origin https://github.com/BURAYA_GITHUB_KULLANICI_ADI_GIR/benim-hesabim.git
-git push -u origin main
-```
-
-`gh` kuruluysa ve repo yoksa:
-
-```bash
-gh repo create benim-hesabim --public --source=. --remote=origin --push
-```
-
-Push'tan önce tekrar kontrol edin:
-- `git status`
-- `local.properties` stage edilmiş olmamalı
-- gerçek Supabase URL ve anon key commit'e girmemeli
-- `README.md`, `.env.example`, `local.properties.example`, `supabase/schema.sql` commit'e dahil olmalı
